@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RS512 JWT CSV Tool</title>
+
+    <!-- Connect the external CSS file -->
+    style.css
+</head>
+
+<body>
+    <main class="wrap">
+
+        <h1>RS-512 JWT CSV Tool</h1>
+        <p class="sub"></p>
+
+        <!-- CSV file section -->
+        <section class="panel">
+            <h2>CSV file</h2>
+
+            <p class="hint">
+                Choose a CSV file first. Existing rows are preserved.
+            </p>
+
+            <div class="buttons">
+                <button id="newCsv" class="primary">
+                    Create new CSV file
+                </button>
+
+                <button id="loadCsv">
+                    Load existing CSV file
+                </button>
+            </div>
+
+            <div id="fileStatus" class="status">
+                No CSV file selected.
+            </div>
+        </section>
+
+        <!-- Encode JWT section -->
+        <section class="panel">
+            <h2 class="section-title">Encode JWT</h2>
+
+            <div class="grid">
+                <div>
+                    <label for="raw">Raw data or JSON</label>
+
+                    <textarea
+                        id="raw"
+                        placeholder='Example: {"sub":"1234567890","name":"John Doe"}'
+                    ></textarea>
+
+                    <p class="hint"></p>
+                </div>
+
+                <div>
+                    <label for="privateInput">
+                        Private key, PKCS#8 PEM, optional
+                    </label>
+
+                    <textarea
+                        id="privateInput"
+                        class="tall"
+                        placeholder="-----BEGIN PRIVATE KEY-----"
+                    ></textarea>
+
+                    <p class="hint">
+                        Leave empty to generate a Private+Public key pair.
+                    </p>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button id="generateAll" class="primary">
+                    Generate Private key + Public key + Encoded JWT &amp; SAVE to file
+                </button>
+
+                <button id="generateExisting">
+                    Generate Public key + Encoded JWT &amp; SAVE to file
+                </button>
+
+                <button id="clearEncode" class="danger">
+                    Clear all Encode JWT fields
+                </button>
+            </div>
+
+            <div class="grid">
+                <div class="full">
+                    <label for="jwtOut">RS512 encoded JWT</label>
+                    <textarea
+                        id="jwtOut"
+                        class="token"
+                        readonly
+                    ></textarea>
+                </div>
+
+                <div>
+                    <label for="privateOut">Generated private key</label>
+                    <textarea
+                        id="privateOut"
+                        class="tall"
+                        readonly
+                    ></textarea>
+                </div>
+
+                <div>
+                    <label for="publicOut">Generated public key</label>
+                    <textarea
+                        id="publicOut"
+                        class="tall"
+                        readonly
+                    ></textarea>
+                </div>
+            </div>
+
+            <div id="encodeMsg" class="msg"></div>
+        </section>
+
+        <!-- Decode JWT section -->
+        <section class="panel">
+            <h2 class="section-title">Decode JWT</h2>
+
+            <div class="grid">
+                <div class="full">
+                    <label for="jwtIn">JWT to decode</label>
+
+                    <textarea
+                        id="jwtIn"
+                        class="token"
+                    ></textarea>
+                </div>
+
+                <div class="full">
+                    <label for="verifyKey">
+                        Public key for signature verification, optional
+                    </label>
+
+                    <textarea
+                        id="verifyKey"
+                        placeholder="-----BEGIN PUBLIC KEY-----"
+                    ></textarea>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button id="decode" class="primary">
+                    Decode JWT
+                </button>
+
+                <button id="clearDecode" class="danger">
+                    Clear all Decode JWT fields
+                </button>
+            </div>
+
+            <div class="grid">
+                <div>
+                    <label for="headerOut">Decoded header</label>
+
+                    <textarea
+                        id="headerOut"
+                        readonly
+                    ></textarea>
+                </div>
+
+                <div>
+                    <label for="payloadOut">Decoded payload</label>
+
+                    <textarea
+                        id="payloadOut"
+                        readonly
+                    ></textarea>
+                </div>
+            </div>
+
+            <div id="decodeMsg" class="msg"></div>
+        </section>
+
+    </main>
+
+    <!-- Connect the external JavaScript file -->
+    script.jsscript>
+</body>
+</html>
